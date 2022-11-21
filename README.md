@@ -12,6 +12,6 @@
 ## Some common errors (these shouldn't happen because of the venv)
 
 - `ModuleNotFoundError: No module named 'cv2'` - This means you need to install OpenCV. You can do this by running `pip install opencv-python` in the terminal.
-- `ModuleNotFoundError: No module named 'face_recognition'` - This means you need to install the face_recognition library. You can do this by running `pip install face_recognition` in the terminal.
+- `ModuleNotFoundError: No module named 'face_recognition'` - This means you need to install the face_recognition library. You can do this by running `pip install dlib` and then `pip install face_recognition` in the terminal.
 - `ModuleNotFoundError: No module named 'numpy'` - This means you need to install numpy. You can do this by running `pip install numpy` in the terminal.
 - failed to build dlib error while running `pip install face_recognition` or `pip install dlib` - This probably means you need to install cmake. You can do this by running `brew install cmake` in the terminal.
