@@ -7,6 +7,7 @@
 3. Activate the virtual environment with `source env/bin/activate`
 4. Edit the main.py file everywhere you see a `TODO` following the directions in the comments
 5. Run the program using `python main.py`
+6. In order to stop the program, press `control + c` in the terminal
 
 ## Some common errors
 
