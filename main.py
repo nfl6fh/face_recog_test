@@ -21,12 +21,17 @@ video_capture = cv2.VideoCapture(0)
 nate_image = face_recognition.load_image_file("nate.jpeg")
 nate_face_encoding = face_recognition.face_encodings(nate_image)[0]
 
+ryan_image = face_recognition.load_image_file("ryan.jpeg")
+ryan_face_encoding = face_recognition.face_encodings(ryan_image)[0]
+
 # Create arrays of known face encodings and their names
 known_face_encodings = [
-    nate_face_encoding      # TODO also add the encoding below this one, separated by commas
+    nate_face_encoding,      # TODO also add the encoding below this one, separated by commas
+    ryan_face_encoding
 ]
 known_face_names = [
-    "Nate Lindley"          # TODO and the name of the person down here, also separated by commas
+    "Nate Lindley",          # TODO and the name of the person down here, also separated by commas
+    "Ryan Lindley"
 ]
 
 # Initialize some variables
