@@ -1,6 +1,7 @@
 import face_recognition
 import cv2
 import numpy as np
+import os
 
 # This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
 # other example, but it includes some basic performance tweaks to make things run a lot faster:
@@ -24,30 +25,26 @@ except:
     print(f"Error opening video from source {img_src}, defaulting to webcam")
     video_capture = cv2.VideoCapture(0)
 
-# TODO: in order to get it to recognize more faces put an image of the face you
-# want it to recognize in this project directory and then copy the two lines
-# below, change anywhere it says nate to the name of the person you want to 
-# recognize.
-nate_image = face_recognition.load_image_file("nate.jpeg")
-nate_face_encoding = face_recognition.face_encodings(nate_image)[0]
+# TODO: in order to add people to recognize, create a folder in the faces folder with the name of the person
+# in the format: first_last. Then add images of the person in the folder. The images should be in .jpeg or .jpg or .png format
 
-ryan_image = face_recognition.load_image_file("ryan.jpeg")
-ryan_face_encoding = face_recognition.face_encodings(ryan_image)[0]
+# iterate through faces folder and add all the faces to the known_face_encodings array
+known_face_encodings = []
+known_face_names = []
 
-obama_image = face_recognition.load_image_file("obama.jpeg")
-obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
-
-# Create arrays of known face encodings and their names
-known_face_encodings = [
-    nate_face_encoding,      # TODO also add the encoding below this one, separated by commas
-    ryan_face_encoding,
-    obama_face_encoding
-]
-known_face_names = [
-    "Nate Lindley",          # TODO and the name of the person down here, also separated by commas
-    "Ryan Lindley",
-    "Barack Obama"
-]
+for folder in os.listdir('faces'):
+    name = f'{folder.split("_")[0].capitalize()} {folder.split("_")[1].capitalize()}'
+    try:
+        for file in os.listdir(f'faces/{folder}'):
+            if file.endswith('.jpeg') or file.endswith('.jpg') or file.endswith('.png'):
+                face_image = face_recognition.load_image_file(f'faces/{folder}/{file}')
+                face_encoding = face_recognition.face_encodings(face_image)[0]
+                known_face_encodings.append(face_encoding)
+                known_face_names.append(name)
+    except:
+        if folder != '.DS_Store':
+            print(f'Error loading face images for {name}')
+        continue
 
 # Initialize some variables
 face_locations = []
