@@ -32,12 +32,12 @@ known_face_names = []
 for folder in os.listdir('faces'):
     name = f'{folder.split("_")[0].capitalize()} {folder.split("_")[1].capitalize()}'
     try:
-        for file in os.listdir(f'faces/{folder}'):
+        for i, file in enumerate(os.listdir(f'faces/{folder}')):
             if file.endswith('.jpeg') or file.endswith('.jpg') or file.endswith('.png'):
                 face_image = face_recognition.load_image_file(f'faces/{folder}/{file}')
                 face_encoding = face_recognition.face_encodings(face_image)[0]
                 known_face_encodings.append(face_encoding)
-                known_face_names.append(name)
+                known_face_names.append(name+'_'+str(i))
     except:
         if folder != '.DS_Store':
             print(f'Error loading face images for {name}')
@@ -82,7 +82,7 @@ while True:
             face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
             best_match_index = np.argmin(face_distances)
             if matches[best_match_index]:
-                name = known_face_names[best_match_index]
+                name = known_face_names[best_match_index][:-2]
             if name != last_name and name != "Unknown":
                 print(f'The last recognized face was: {name}')
                 last_name = name
