@@ -11,9 +11,18 @@ import numpy as np
 # OpenCV is *not* required to use the face_recognition library. It's only required if you want to run this
 # specific demo. If you have trouble installing it, try any of the other demos that don't require it instead.
 
-SOURCE = 1     # 0 for webcam, 1 for iPhone camera (on Mac). If iPhone doesn't work try connecting with a cable
+img_src = ''
+while img_src not in ['0', '1']:
+    img_src = input("Enter image source number (0 for webcam, 1 for iPhone camera): ") # If iPhone doesn't work try connecting with a cable
 
-video_capture = cv2.VideoCapture(SOURCE)
+img_src = int(img_src)
+
+try:
+    video_capture = cv2.VideoCapture(img_src)
+    test_resize = cv2.resize(video_capture.read()[1], (0, 0), fx=0.25, fy=0.25)
+except:
+    print(f"Error opening video from source {img_src}, defaulting to webcam")
+    video_capture = cv2.VideoCapture(0)
 
 # TODO: in order to get it to recognize more faces put an image of the face you
 # want it to recognize in this project directory and then copy the two lines
@@ -45,11 +54,12 @@ face_locations = []
 face_encodings = []
 face_names = []
 process_this_frame = True
+last_name = ''
 
 while True:
     # Grab a single frame of video
     ret, frame = video_capture.read()
-    frame_flipped = cv2.flip(frame,1) if SOURCE == 0 else frame
+    frame_flipped = cv2.flip(frame,1) if img_src == 0 else frame
 
     # Only process every other frame of video to save time
     if process_this_frame:
@@ -77,9 +87,11 @@ while True:
             # Or instead, use the known face with the smallest distance to the new face
             face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
             best_match_index = np.argmin(face_distances)
-            print(known_face_names[best_match_index])
             if matches[best_match_index]:
                 name = known_face_names[best_match_index]
+            if name != last_name and name != "Unknown":
+                print(f'The last recognized face was: {name}')
+                last_name = name
 
             face_names.append(name)
 
