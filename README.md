@@ -5,7 +5,7 @@
 1. Clone the repository using `git clone https://github.com/nfl6fh/face_recog_test`
 2. Enter the directory using `cd face_recog_test`
 3. Install the dependencies using `pip3 install -r requirements.txt`
-4. in order to add people to recognize, create a folder in the faces folder with the name of the person in the format: first_last. Then add images of the person in the folder. The images should be in .jpeg or .jpg or .png format
+4. In order to add people to recognize, create a folder in the faces folder with the name of the person in the format: first_last. Then add images of the person in the folder. The images should be in .jpeg or .jpg or .png format
 5. Run the program using `python3 main.py`
 6. In order to stop the program, press `q` while in the video window
 
