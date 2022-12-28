@@ -25,9 +25,6 @@ except:
     print(f"Error opening video from source {img_src}, defaulting to webcam")
     video_capture = cv2.VideoCapture(0)
 
-# TODO: in order to add people to recognize, create a folder in the faces folder with the name of the person
-# in the format: first_last. Then add images of the person in the folder. The images should be in .jpeg or .jpg or .png format
-
 # iterate through faces folder and add all the faces to the known_face_encodings array
 known_face_encodings = []
 known_face_names = []
