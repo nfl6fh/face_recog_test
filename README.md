@@ -4,12 +4,12 @@
 
 1. Clone the repository using `git clone https://github.com/nfl6fh/face_recog_test`
 2. Enter the directory using `cd face_recog_test`
-3. Activate the virtual environment with `source env/bin/activate`
-4. Edit the main.py file everywhere you see a `TODO` following the directions in the comments
+3. Install the dependencies using `pip3 install -r requirements.txt`
+4. Edit the main.py file everywhere you see a `TODO` and follow the directions in the comments
 5. Run the program using `python3 main.py`
 6. In order to stop the program, press `q` while in the video window
 
-## Some common errors (these shouldn't happen because of the venv)
+## Some common errors (these shouldn't happen because of the requirements.txt file, but just in case)
 
 - `ModuleNotFoundError: No module named 'cv2'` - This means you need to install OpenCV. You can do this by running `pip3 install opencv-python` in the terminal.
 - `ModuleNotFoundError: No module named 'face_recognition'` - This means you need to install the face_recognition library. You can do this by running `pip3 install dlib` and then `pip3 install face_recognition` in the terminal.
